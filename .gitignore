@@ -1,0 +1,15 @@
+# Compilaci¢n y Binarios
+bin/
+obj/
+
+# Archivos de Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+
+# Configuraciones locales y secretos
+appsettings.Development.json
+appsettings.Local.json
+*.secrets.json

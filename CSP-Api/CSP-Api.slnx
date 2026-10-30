@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../Business/Business.csproj" />
+  <Project Path="../Domain/Domain.csproj" />
+  <Project Path="../Repository/Repository.csproj" />
+  <Project Path="CSP-Api.csproj" />
+</Solution>
