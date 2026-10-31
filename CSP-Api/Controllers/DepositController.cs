@@ -1,4 +1,5 @@
 ﻿using CSP_Api.ModelDto;
+using Domain.DTO;
 using Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using DomainModel = Domain.Model;
@@ -85,7 +86,7 @@ namespace CSP_Api.Controllers
         {
             Deposit depositToUpdate = new Deposit
             {
-                DepositId = deposit.DepositId,
+                DepositId = id,
                 ActualAmount = deposit.ActualAmount
             };
             depositService.ReconciliateDeposit(depositToUpdate);
@@ -96,6 +97,12 @@ namespace CSP_Api.Controllers
         {
             var stats = await depositService.GetDashboardStatsAsync();
             return Ok(stats);
+        }
+        [HttpGet("GetFilteredDeposits")]
+        public async Task<IActionResult> GetFilteredDeposits([FromQuery] DepositFilterDto filters)
+        {
+            var result = await this.depositService.GetFilteredDeposits(filters);
+            return Ok(result);
         }
     }
 }

@@ -15,5 +15,6 @@ namespace Business.Deposit
         public void ReconciliateDeposit(DomainModel.Deposit deposit);
         public Task<IEnumerable<DomainModel.Deposit>> ListDeposits();
         public Task<DashboardStatsDto> GetDashboardStatsAsync();
+        public Task<IEnumerable<DomainModel.Deposit>> GetFilteredDeposits(DepositFilterDto filters);
     }
 }

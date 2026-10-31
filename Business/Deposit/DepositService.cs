@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DomainModel = Domain.Model;
 
 namespace Business.Deposit
 {
@@ -13,7 +14,7 @@ namespace Business.Deposit
             depositRepository = _depositRepository;
         }   
 
-        public async Task<Domain.Model.Deposit?> AddDeposit(Domain.Model.Deposit deposit)
+        public async Task<DomainModel.Deposit?> AddDeposit(DomainModel.Deposit deposit)
         {
             return await depositRepository.AddDeposit(deposit);
         }
@@ -35,26 +36,26 @@ namespace Business.Deposit
             depositRepository.DeleteDeposit(depositId);
         }
 
-        public async Task<Domain.Model.Deposit?> GetDepositById(int depositId)
+        public async Task<DomainModel.Deposit?> GetDepositById(int depositId)
         {
             return await this.depositRepository.GetDepositById(depositId);
         }
 
-        public async Task<IEnumerable<Domain.Model.Deposit>> ListDeposits()
+        public async Task<IEnumerable<DomainModel.Deposit>> ListDeposits()
         {
             return await this.depositRepository.GetAllDeposits();
         }
 
-        public void ReconciliateDeposit(Domain.Model.Deposit deposit)
+        public void ReconciliateDeposit(DomainModel.Deposit deposit)
         {
             this.depositRepository.ReconciliateDeposit(deposit);
         }
 
-        public async Task<Domain.Model.Deposit?> UpdateDeposit(Domain.Model.Deposit deposit)
+        public async Task<DomainModel.Deposit?> UpdateDeposit(DomainModel.Deposit deposit)
         {
             return await this.depositRepository.UpdateDeposit(deposit);
         }
-        public async Task<Domain.Model.Deposit?> GetDepositByDepositNumber(string depositNumber)
+        public async Task<DomainModel.Deposit?> GetDepositByDepositNumber(string depositNumber)
         {
             return await this.depositRepository.GetDepositByDepositNumber(depositNumber);
         }
@@ -62,5 +63,10 @@ namespace Business.Deposit
         {
             return await this.depositRepository.GetDashboardStatsAsync();
         }
+        public async Task<IEnumerable<DomainModel.Deposit>> GetFilteredDeposits(DepositFilterDto filters)
+        {
+            return await this.depositRepository.GetFilteredDeposits(filters);
+        }
+
     }
 }

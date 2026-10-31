@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("localhost")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("web")));
 
 builder.Services.AddScoped<IDepositService, DepositService>();
 builder.Services.AddScoped<IDepositRepository, DepositRepository>();
@@ -50,6 +50,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting(); 
 app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();

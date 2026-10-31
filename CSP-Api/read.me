@@ -1,0 +1,18 @@
+1.- You can reach out this running application at:
+
+    http://cash-reconciliation-portal.muchas-cosas.com/api/
+
+
+2.- Clone the repo: 
+                git clone https://github.com/rafcrumen/Cash-Reconciliation-Portal-API.git
+
+3.- In order tu setup the Database in your local or another server you have to change
+the value in the appsettings.json
+  "ConnectionStrings": {
+    "localhost": "Server=Fay-Lenovo;Database=CashReconciliationPortal;Trusted_Connection=True;TrustServerCertificate=True;",
+  }
+
+4.- To create a new database you have to run following command from the folder named "CSP-Api" where you cloned the source code
+
+dotnet ef database update --context DataContext --project ../Repository/Repository.csproj --startup-project CSP-Api.csproj
+

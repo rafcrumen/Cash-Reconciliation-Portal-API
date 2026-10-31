@@ -15,5 +15,6 @@ namespace Repository.Deposit
         public void DeleteDeposit(int depositId);
         public void ReconciliateDeposit(DomainModel.Deposit deposit);
         public Task<DashboardStatsDto> GetDashboardStatsAsync();
+        public Task<IEnumerable<DomainModel.Deposit>> GetFilteredDeposits(DepositFilterDto filters);
     }
 }

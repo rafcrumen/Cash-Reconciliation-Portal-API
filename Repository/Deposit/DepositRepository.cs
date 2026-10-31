@@ -105,5 +105,33 @@ namespace Repository.Deposit
 
             return stats ?? new DashboardStatsDto();
         }
+
+
+        public async Task<IEnumerable<DomainModel.Deposit>> GetFilteredDeposits(DepositFilterDto filters)
+        {
+            var query = this.dataContext.Deposits.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filters.DepositNumber))
+            {
+                query = query.Where(d => d.DepositNumber.Contains(filters.DepositNumber));
+            }
+
+            if (!string.IsNullOrWhiteSpace(filters.StoreNumber))
+            {
+                query = query.Where(d => d.StoreNumber == filters.StoreNumber);
+            }
+
+            if (filters.FechaInicio.HasValue)
+            {
+                query = query.Where(d => d.DepositDate >= filters.FechaInicio.Value.Date);
+            }
+
+            if (filters.FechaFin.HasValue)
+            {
+                query = query.Where(d => d.DepositDate <= filters.FechaFin.Value.Date.AddDays(1).AddTicks(-1));
+            }
+            return await query.ToListAsync();
+        }
+
     }
 }
